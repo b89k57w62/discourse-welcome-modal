@@ -1,0 +1,6 @@
+zh_CN:
+  theme_metadata:
+    description: '每次访问都会显示的欢迎弹窗'
+  discourse_welcome_modal:
+    title: 欢迎加入讨论
+    close_btn: 完成

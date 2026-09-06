@@ -1,71 +1,107 @@
 @use "lib/viewport";
 
-.modal-content {
+$card-radius: 6px;
+$card-padding: 12px;
+$card-gap: 8px;
+$card-text-gap: 4px;
+$image-radius: 4px;
+$cta-min-height: 44px;
+$cta-font-weight: 700;
+$card-hover-lift: 3px;
+$card-shadow-y: 8px;
+$card-shadow-blur: 20px;
+$card-shadow-alpha: 0.18;
+$transition-duration: 140ms;
+$grid-min-column: 200px;
+$grid-gap: 16px;
+$list-image-width: 35%;
+
+.welcome-modal-cards {
+  display: flex;
+  flex-direction: column;
+  gap: $grid-gap;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: $card-gap;
+    padding: $card-padding;
+    border: 1px solid var(--primary-low);
+    border-radius: $card-radius;
+    transition: border-color $transition-duration ease,
+      box-shadow $transition-duration ease,
+      transform $transition-duration ease;
+
+    &:hover,
+    &:focus-within {
+      border-color: var(--tertiary);
+      transform: translateY(-$card-hover-lift);
+      box-shadow: 0 $card-shadow-y $card-shadow-blur
+        rgba(var(--tertiary-rgb), $card-shadow-alpha);
+    }
+  }
+
   img {
     width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: $image-radius;
   }
 
-  h3 {
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: $card-text-gap;
+    flex: 1;
     margin: 0;
   }
 
+  h3,
   p {
-    margin: 0 0 8px;
+    margin: 0;
   }
 
-  // Small breakpoint: always stacked list regardless of layout
-  @include viewport.until(sm) {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      img {
-        width: 100%;
-      }
-
-      .card-content {
-        margin: 0;
-      }
-    }
+  .welcome-modal-cta {
+    width: 100%;
+    min-height: $cta-min-height;
+    font-weight: $cta-font-weight;
+    margin-top: auto;
   }
 
   &.grid-layout {
     @include viewport.from(sm) {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-
-      .card-content {
-        margin-top: 8px;
-      }
+      grid-template-columns: repeat(auto-fit, minmax($grid-min-column, 1fr));
+      gap: $grid-gap;
     }
   }
 
   &.list-layout {
     @include viewport.from(sm) {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
       .card {
-        display: flex;
-        gap: 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
 
-        img {
-          width: 35%;
-          object-fit: cover;
-        }
+      img {
+        width: $list-image-width;
+        object-fit: cover;
+      }
 
-        .card-content {
-          margin: 8px 0;
-        }
+      .welcome-modal-cta {
+        width: auto;
+        margin-top: 0;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+
+      &:hover,
+      &:focus-within {
+        transform: none;
       }
     }
   }
