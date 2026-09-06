@@ -5,6 +5,8 @@ $card-padding: 12px;
 $card-gap: 8px;
 $card-text-gap: 4px;
 $image-radius: 4px;
+$image-max-height: 220px;
+$image-max-height-compact: 32vh;
 $cta-min-height: 44px;
 $cta-font-weight: 700;
 $card-hover-lift: 3px;
@@ -13,7 +15,6 @@ $card-shadow-blur: 20px;
 $card-shadow-alpha: 0.18;
 $transition-duration: 140ms;
 $grid-min-column: 200px;
-$close-button-min-width: 160px;
 $grid-gap: 16px;
 $list-image-width: 35%;
 
@@ -44,7 +45,8 @@ $list-image-width: 35%;
 
   img {
     width: 100%;
-    height: auto;
+    max-height: $image-max-height;
+    object-fit: cover;
     border-radius: $image-radius;
   }
 
@@ -54,11 +56,13 @@ $list-image-width: 35%;
     gap: $card-text-gap;
     flex: 1;
     margin: 0;
+    min-width: 0;
   }
 
   h3,
   p {
     margin: 0;
+    overflow-wrap: anywhere;
   }
 
   .welcome-modal-cta {
@@ -66,6 +70,12 @@ $list-image-width: 35%;
     min-height: $cta-min-height;
     font-weight: $cta-font-weight;
     margin-top: auto;
+  }
+
+  @include viewport.until(sm) {
+    img {
+      max-height: $image-max-height-compact;
+    }
   }
 
   &.grid-layout {
@@ -86,7 +96,6 @@ $list-image-width: 35%;
 
       img {
         width: $list-image-width;
-        object-fit: cover;
       }
 
       .welcome-modal-cta {
@@ -110,12 +119,12 @@ $list-image-width: 35%;
 
 .welcome-modal-footer {
   display: flex;
-  justify-content: center;
   width: 100%;
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .welcome-modal-close {
+  width: 100%;
   min-height: $cta-min-height;
-  min-width: $close-button-min-width;
   font-weight: $cta-font-weight;
 }
