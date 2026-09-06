@@ -13,6 +13,7 @@ $card-shadow-blur: 20px;
 $card-shadow-alpha: 0.18;
 $transition-duration: 140ms;
 $grid-min-column: 200px;
+$close-button-min-width: 160px;
 $grid-gap: 16px;
 $list-image-width: 35%;
 
@@ -105,4 +106,16 @@ $list-image-width: 35%;
       }
     }
   }
+}
+
+.welcome-modal-footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.welcome-modal-close {
+  min-height: $cta-min-height;
+  min-width: $close-button-min-width;
+  font-weight: $cta-font-weight;
 }

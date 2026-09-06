@@ -149,11 +149,13 @@ export default class WelcomeModal extends Component {
                     </div>
                 </:body>
                 <:footer>
-                    <DButton
-                        @translatedLabel={{this.modalCloseBtn}}
-                        @action={{this.dismissModal}}
-                        class="btn-transparent close-button"
-                    />
+                    <div class="welcome-modal-footer">
+                        <DButton
+                            @translatedLabel={{this.modalCloseBtn}}
+                            @action={{this.dismissModal}}
+                            class="btn-danger welcome-modal-close"
+                        />
+                    </div>
                 </:footer>
             </DModal>
         {{/if}}
