@@ -5,15 +5,7 @@ enabled:
 feature_enabled_date:
   type: string
   default: "2026-02-06"
-  description: "Date when the welcome modal feature was first enabled (YYYY-MM-DD format). Users who registered before this date are considered 'existing users'."
-grace_period_months:
-  type: integer
-  default: 3
-  description: "Grace period in months for existing users. During this period, existing users won't see the modal. Set to 0 for no grace period (modal shows immediately)."
-returning_user_inactivity_months:
-  type: integer
-  default: 6
-  description: "Consider a user as 'returning' if they haven't seen the modal for this many months. Lower values show the modal more frequently."
+  description: "Date when the welcome modal feature was first enabled (YYYY-MM-DD format). Only used to split the audience: users who registered before this date count as 'returning users', users who registered on or after it count as 'new users'. Anonymous visitors match neither, so they only see cards set to 'both'."
 card_layout:
   type: enum
   default: "grid"
@@ -24,7 +16,7 @@ card_layout:
 card_content:
   type: objects
   default: []
-  description: "Configure the welcome cards displayed in the modal. Each card can be shown to specific user types (new users, returning users, or both)."
+  description: "Configure the welcome cards displayed in the modal. The modal is shown on every visit, to signed-in users and anonymous visitors alike. Each card can be shown to specific user types (new users, returning users, or both)."
   schema:
     name: community_card
     properties:
