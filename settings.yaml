@@ -35,7 +35,7 @@ card_content:
       imgUrl:
         type: upload
         required: true
-        description: "Image to display on the card"
+        description: "Image to display on the card. Upload at 16:9 (e.g. 1200×675) to fill the frame; other ratios are shown in full with a neutral background."
       altText:
         type: string
         required: true

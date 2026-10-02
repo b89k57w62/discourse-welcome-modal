@@ -5,6 +5,7 @@ $card-padding: 12px;
 $card-gap: 8px;
 $card-text-gap: 4px;
 $image-radius: 4px;
+$image-aspect-ratio: 16 / 9;
 $image-max-height: 220px;
 $image-max-height-compact: 32vh;
 $cta-min-height: 44px;
@@ -44,9 +45,12 @@ $list-image-width: 35%;
   }
 
   img {
+    display: block;
     width: 100%;
+    aspect-ratio: $image-aspect-ratio;
     max-height: $image-max-height;
-    object-fit: cover;
+    object-fit: contain;
+    background: var(--primary-very-low);
     border-radius: $image-radius;
   }
 
